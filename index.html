@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <!-- login logout -->
+    <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
+    </fb:login-button>
+
+    <button onclick="Logoutfacebook();">Logout from Facebook</button>
+
+    <!-- get my picture -->
+    <button onclick="ShowMyProfile();">ShowMyProfile</button>
+
+    <!-- Dispaly -->
+    <div id="Picture">
+        Picture
+    </div>
+    <div id="status">
+        abcddd
+    </div>
+    <img src="" alt="">
+
+</body>
+<script>
+    window.fbAsyncInit = function () {
+        FB.init({
+            appId: '169778677004041',
+            xfbml: true,
+            version: 'v2.12'
+        });
+        FB.AppEvents.logPageView();
+    };
+
+    (function (d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) { return; }
+        js = d.createElement(s); js.id = id;
+        js.src = "https://connect.facebook.net/en_US/sdk.js";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+
+    //login logout
+    function checkLoginState() {
+        FB.getLoginStatus(function (response) {
+            //alert(response.status);
+            if (response.status === 'connected') {
+                document.getElementById('status').innerHTML = "connected ^^";
+            } else {
+                document.getElementById('status').innerHTML = "404";
+            }
+        });
+    }
+    function Logoutfacebook() {
+        FB.logout(function (response) {
+            //alert(response.status);
+            document.getElementById('status').innerHTML = "Log out";
+        });
+    }
+
+    //get my picture
+    function ShowMyProfile() {
+        FB.api(
+            '/me',
+            //'/169778677004041/picture',
+            'GET',
+            { fields: 'first_name,last_name,name,id,picture.width(150).height(150)' },
+            function (response) {
+                document.getElementById('Picture').innerHTML = "<img src='" + response.picture.data.url + "' alt=''>";;//response.name; ;
+            }
+        );
+    }
+</script>
+
+</html>
