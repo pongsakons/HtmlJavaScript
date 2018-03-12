@@ -19,9 +19,15 @@
     <!-- get my picture -->
     <button onclick="ShowMyProfile();">ShowMyProfile</button>
 
+    <!-- get my picture -->
+    <button onclick="getCurrentUserInfo();">CurrentUserInfo</button>
+
     <!-- Dispaly -->
     <div id="Picture">
         Picture
+    </div>
+    <div id="Name">
+        Name
     </div>
     <div id="status">
         abcddd
@@ -76,6 +82,15 @@
                 document.getElementById('Picture').innerHTML = "<img src='" + response.picture.data.url + "' alt=''>";;//response.name; ;
             }
         );
+    }
+
+    function getCurrentUserInfo() {
+        FB.api('/me?fields=name,email', function (response) {
+            document.getElementById('Name').innerHTML = response.name;
+            //alert(response.authResponse.userID);
+            //alert(response.name);
+            //alert(response.email);
+        });
     }
 </script>
 
