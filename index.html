@@ -22,6 +22,10 @@
     <!-- get my picture -->
     <button id="CurrentUserInfo" onclick="getCurrentUserInfo();">CurrentUserInfo</button>
 
+    <!-- get my picture -->
+    <button id="Cstatus" onclick="CheckCstatus();">CurrentUserInfo</button>
+
+
     <!-- Dispaly -->
     <div id="Picture">
         Picture
@@ -32,7 +36,7 @@
     <div id="status">
         abcddd
     </div>
-    <img src="" alt="">
+    
 
 </body>
 <script>
@@ -61,6 +65,7 @@
         document.getElementById("Picture").style.visibility = 'hidden';  
         document.getElementById("Name").style.visibility = 'hidden';  
         document.getElementById("status").style.visibility = 'hidden';  
+        document.getElementById("Cstatus").style.visibility = 'hidden';  
     }
 
     function EnableInitial()
@@ -71,6 +76,7 @@
         document.getElementById("Picture").style.visibility = 'visible';   
         document.getElementById("Name").style.visibility = 'visible';  
         document.getElementById("status").style.visibility = 'visible';  
+        document.getElementById("Cstatus").style.visibility = 'visible';  
     }
 
     //login logout
@@ -97,7 +103,6 @@
     function ShowMyProfile() {
         FB.api(
             '/me',
-            //'/169778677004041/picture',
             'GET',
             { fields: 'first_name,last_name,name,id,picture.width(150).height(150)' },
             function (response) {
@@ -109,9 +114,12 @@
     function getCurrentUserInfo() {
         FB.api('/me?fields=name,email', function (response) {
             document.getElementById('Name').innerHTML = response.name;
-            //alert(response.authResponse.userID);
-            //alert(response.name);
-            //alert(response.email);
+        });
+    }
+
+    function CheckCstatus() {
+        FB.api('/me', function (response) {
+            console.log(response);
         });
     }
 
