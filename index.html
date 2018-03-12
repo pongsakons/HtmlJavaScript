@@ -8,19 +8,19 @@
     <title>Document</title>
 </head>
 
-<body>
+<body onload="DisableInitial()">
 
     <!-- login logout -->
     <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
     </fb:login-button>
 
-    <button onclick="Logoutfacebook();">Logout from Facebook</button>
+    <button id="Logout" onclick="Logoutfacebook();">Logout from Facebook</button>
 
     <!-- get my picture -->
-    <button onclick="ShowMyProfile();">ShowMyProfile</button>
+    <button id="ShowMyProfile" onclick="ShowMyProfile();">ShowMyProfile</button>
 
     <!-- get my picture -->
-    <button onclick="getCurrentUserInfo();">CurrentUserInfo</button>
+    <button id="CurrentUserInfo" onclick="getCurrentUserInfo();">CurrentUserInfo</button>
 
     <!-- Dispaly -->
     <div id="Picture">
@@ -53,12 +53,33 @@
         fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));
 
+    function DisableInitial()
+    {
+        document.getElementById("Logout").disabled = true; 
+        document.getElementById("ShowMyProfile").disabled = true; 
+        document.getElementById("CurrentUserInfo").disabled = true; 
+        document.getElementById("Picture").disabled = true; 
+        document.getElementById("Name").disabled = true; 
+        document.getElementById("status").disabled = true; 
+    }
+
+    function EnableInitial()
+    {
+        document.getElementById("Logout").disabled = false; 
+        document.getElementById("ShowMyProfile").disabled = false; 
+        document.getElementById("CurrentUserInfo").disabled = false; 
+        document.getElementById("Picture").disabled = false; 
+        document.getElementById("Name").disabled = false; 
+        document.getElementById("status").disabled = false; 
+    }
+
     //login logout
     function checkLoginState() {
         FB.getLoginStatus(function (response) {
             //alert(response.status);
             if (response.status === 'connected') {
                 document.getElementById('status').innerHTML = "connected ^^";
+                EnableInitial();
             } else {
                 document.getElementById('status').innerHTML = "404";
             }
@@ -68,6 +89,7 @@
         FB.logout(function (response) {
             //alert(response.status);
             document.getElementById('status').innerHTML = "Log out";
+            DisableInitial();
         });
     }
 
@@ -92,6 +114,7 @@
             //alert(response.email);
         });
     }
+
 </script>
 
 </html>
