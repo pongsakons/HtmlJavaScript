@@ -55,22 +55,22 @@
 
     function DisableInitial()
     {
-        document.getElementById("Logout").disabled = true; 
-        document.getElementById("ShowMyProfile").disabled = true; 
-        document.getElementById("CurrentUserInfo").disabled = true; 
-        document.getElementById("Picture").disabled = true; 
-        document.getElementById("Name").disabled = true; 
-        document.getElementById("status").disabled = true; 
+        document.getElementById("Logout").style.visibility = 'hidden';  
+        document.getElementById("ShowMyProfile").style.visibility = 'hidden';  
+        document.getElementById("CurrentUserInfo").style.visibility = 'hidden';  
+        document.getElementById("Picture").style.visibility = 'hidden';  
+        document.getElementById("Name").style.visibility = 'hidden';  
+        document.getElementById("status").style.visibility = 'hidden';  
     }
 
     function EnableInitial()
     {
-        document.getElementById("Logout").disabled = false; 
-        document.getElementById("ShowMyProfile").disabled = false; 
-        document.getElementById("CurrentUserInfo").disabled = false; 
-        document.getElementById("Picture").disabled = false; 
-        document.getElementById("Name").disabled = false; 
-        document.getElementById("status").disabled = false; 
+        document.getElementById("Logout").style.visibility = 'visible';  
+        document.getElementById("ShowMyProfile").style.visibility = 'visible';  
+        document.getElementById("CurrentUserInfo").style.visibility = 'visible';  
+        document.getElementById("Picture").style.visibility = 'visible';   
+        document.getElementById("Name").style.visibility = 'visible';  
+        document.getElementById("status").style.visibility = 'visible';  
     }
 
     //login logout
