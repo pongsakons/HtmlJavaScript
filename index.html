@@ -25,6 +25,8 @@
     <!-- get my picture -->
     <button id="Cstatus" onclick="CheckCstatus();">CurrentUserInfo</button>
 
+    <!-- get my picture -->
+    <button id="btnGetFriends" onclick="GetFriends();">GetFriends</button>
 
     <!-- Dispaly -->
     <div id="Picture">
@@ -66,6 +68,7 @@
         document.getElementById("Name").style.visibility = 'hidden';  
         document.getElementById("status").style.visibility = 'hidden';  
         document.getElementById("Cstatus").style.visibility = 'hidden';  
+        document.getElementById("btnGetFriends").style.visibility = 'hidden';  
     }
 
     function EnableInitial()
@@ -76,7 +79,8 @@
         document.getElementById("Picture").style.visibility = 'visible';   
         document.getElementById("Name").style.visibility = 'visible';  
         document.getElementById("status").style.visibility = 'visible';  
-        document.getElementById("Cstatus").style.visibility = 'visible';  
+        document.getElementById("Cstatus").style.visibility = 'visible'; 
+        document.getElementById("btnGetFriends").style.visibility = 'visible'; 
     }
 
     //login logout
@@ -123,6 +127,11 @@
         });
     }
 
+    function GetFriends(){
+        FB.api('/me/friendlists', function (response) {
+            console.log(response);
+        });
+    }
 </script>
 
 </html>
