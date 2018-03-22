@@ -39,6 +39,9 @@
         abcddd
     </div>
 
+    <div id="friends"></div>
+
+    <div id="fb-root"></div>
 
 </body>
 <script>
@@ -127,11 +130,15 @@
 
     function GetFriends() {
         FB.api('/me/friendlists', function (response) {
-            if (response && response.data) {
-                // Handle response
-                console.log(response.data);
-            } else {
-                console.log('Something goes wrong', response);
+            console.log(response);
+            console.log(response.data);
+            if(response && response.data.length) {
+                var html = '<ul>';
+                for(var i=0; i<response.data.length; i++) {
+                    html += '<li><img src="http://graph.facebook.com/' + response.data[i].id + '/picture?type=small" />' + response.data[i].name + '</li>';
+                }
+                html += '</ul>';
+                document.getElementById('friends').innerHTML = html;
             }
         });
     }
