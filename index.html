@@ -38,7 +38,7 @@
     <div id="status">
         abcddd
     </div>
-    
+
 
 </body>
 <script>
@@ -59,28 +59,26 @@
         fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));
 
-    function DisableInitial()
-    {
-        document.getElementById("Logout").style.visibility = 'hidden';  
-        document.getElementById("ShowMyProfile").style.visibility = 'hidden';  
-        document.getElementById("CurrentUserInfo").style.visibility = 'hidden';  
-        document.getElementById("Picture").style.visibility = 'hidden';  
-        document.getElementById("Name").style.visibility = 'hidden';  
-        document.getElementById("status").style.visibility = 'hidden';  
-        document.getElementById("Cstatus").style.visibility = 'hidden';  
-        document.getElementById("btnGetFriends").style.visibility = 'hidden';  
+    function DisableInitial() {
+        document.getElementById("Logout").style.visibility = 'hidden';
+        document.getElementById("ShowMyProfile").style.visibility = 'hidden';
+        document.getElementById("CurrentUserInfo").style.visibility = 'hidden';
+        document.getElementById("Picture").style.visibility = 'hidden';
+        document.getElementById("Name").style.visibility = 'hidden';
+        document.getElementById("status").style.visibility = 'hidden';
+        document.getElementById("Cstatus").style.visibility = 'hidden';
+        document.getElementById("btnGetFriends").style.visibility = 'hidden';
     }
 
-    function EnableInitial()
-    {
-        document.getElementById("Logout").style.visibility = 'visible';  
-        document.getElementById("ShowMyProfile").style.visibility = 'visible';  
-        document.getElementById("CurrentUserInfo").style.visibility = 'visible';  
-        document.getElementById("Picture").style.visibility = 'visible';   
-        document.getElementById("Name").style.visibility = 'visible';  
-        document.getElementById("status").style.visibility = 'visible';  
-        document.getElementById("Cstatus").style.visibility = 'visible'; 
-        document.getElementById("btnGetFriends").style.visibility = 'visible'; 
+    function EnableInitial() {
+        document.getElementById("Logout").style.visibility = 'visible';
+        document.getElementById("ShowMyProfile").style.visibility = 'visible';
+        document.getElementById("CurrentUserInfo").style.visibility = 'visible';
+        document.getElementById("Picture").style.visibility = 'visible';
+        document.getElementById("Name").style.visibility = 'visible';
+        document.getElementById("status").style.visibility = 'visible';
+        document.getElementById("Cstatus").style.visibility = 'visible';
+        document.getElementById("btnGetFriends").style.visibility = 'visible';
     }
 
     //login logout
@@ -127,9 +125,14 @@
         });
     }
 
-    function GetFriends(){
+    function GetFriends() {
         FB.api('/me/friendlists', function (response) {
-            console.log(response);
+            if (response && response.data) {
+                // Handle response
+                consloe.log(response.data);
+            } else {
+                console.log('Something goes wrong', response);
+            }
         });
     }
 </script>
