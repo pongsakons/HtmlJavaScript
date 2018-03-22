@@ -1,0 +1,45 @@
+<!doctype html>
+<html xmlns:fb="http://www.facebook.com/2008/fbml">
+
+<head>
+  <title>Facebook Javascript SDK</title>
+</head>
+
+<body>
+  <div>
+    <fb:login-button perms=""></fb:login-button>
+  </div>
+
+  <div id="friends"></div>
+
+
+  <div id="fb-root"></div>
+  <script>
+    window.fbAsyncInit = function () {
+      FB.init({
+        appId: '169778677004041',
+        xfbml: true,
+        version: 'v2.12'
+      });
+      FB.AppEvents.logPageView();
+      FB.api('/me/friends', function (resp) {
+        if (resp && resp.data.length) {
+          var html = '<ul>';
+          for (var i = 0; i < resp.data.length; i++) {
+            html += '<li><img src="http://graph.facebook.com/' + resp.data[i].id + '/picture?type=small" />' + resp.data[i].name + '</li>';
+          }
+          html += '</ul>';
+          document.getElementById('friends').innerHTML = html;
+        }
+      });
+    };
+    (function () {
+      var e = document.createElement('script');
+      e.src = document.location.protocol + '//connect.facebook.net/en_US/all.js';
+      e.async = true;
+      document.getElementById('fb-root').appendChild(e);
+    }());
+  </script>
+</body>
+
+</html>
