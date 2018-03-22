@@ -7,10 +7,10 @@
 
 <body onload="DisableInitial()">
   <div>
-    <fb:login-button perms=""  onlogin="EnableInitial();"></fb:login-button>
+    <fb:login-button perms="" onlogin="EnableInitial();"></fb:login-button>
   </div>
-<!-- get my friends -->
-<button id="btnGetFriends" onclick="GetFriends();">GetFriends</button>
+  <!-- get my friends -->
+  <button id="btnGetFriends" onclick="GetFriends();">GetFriends</button>
 
   <div id="friends"></div>
 
@@ -33,24 +33,28 @@
     }(document, 'script', 'facebook-jssdk'));
 
     function GetFriends() {
-      FB.api('/me/friends', function (resp) {
-        if (resp && resp.data.length) {
-          var html = '<ul>';
-          for (var i = 0; i < resp.data.length; i++) {
-            html += '<li><img src="http://graph.facebook.com/' + resp.data[i].id + '/picture?type=small" />' + resp.data[i].name + '</li>';
+      FB.api('/me/friends', 'GET',
+        { fields: 'first_name,last_name,name,id,picture.width(150).height(150)' },
+        function (response) {
+          console.log(response);
+          console.log(response.data);
+          if (response && response.data.length) {
+            var html = '<ul>';
+            for (var i = 0; i < response.data.length; i++) {
+              html += '<li><img src="http://graph.facebook.com/' + response.data[i].id + '/picture?type=small" />' + resp.data[i].name + '</li>';
+            }
+            html += '</ul>';
+            document.getElementById('friends').innerHTML = html;
           }
-          html += '</ul>';
-          document.getElementById('friends').innerHTML = html;
-        }
-      });
+        });
     }
 
-function DisableInitial() {
-        document.getElementById("btnGetFriends").style.visibility = 'hidden';
+    function DisableInitial() {
+      document.getElementById("btnGetFriends").style.visibility = 'hidden';
     }
 
     function EnableInitial() {
-        document.getElementById("btnGetFriends").style.visibility = 'visible';
+      document.getElementById("btnGetFriends").style.visibility = 'visible';
     }
   </script>
 </body>

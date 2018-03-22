@@ -127,13 +127,16 @@
     }
 
     function GetFriends() {
-        FB.api('/me/friendlists', function (response) {
+        FB.api('/me/friendlists',
+            'GET',
+            { fields: 'first_name,last_name,name,id,picture.width(150).height(150)' }, 
+            function (response) {
             console.log(response);
             console.log(response.data);
             if(response && response.data.length) {
                 var html = '<ul>';
                 for(var i=0; i<response.data.length; i++) {
-                    html += '<li><img src="http://graph.facebook.com/' + response.data[i].id + '/picture?type=small" />' + response.data[i].name + '</li>';
+                    html += '<li><img src="http://graph.facebook.com/' + response.picture.data[i].id + '/picture?type=small" />' + response.data[i].name + '</li>';
                 }
                 html += '</ul>';
                 document.getElementById('friends').innerHTML = html;
