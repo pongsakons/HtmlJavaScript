@@ -136,7 +136,7 @@
     //         }
     //     );
         function GetFriends() {
-        FB.api('/me/taggable_friend?fields=name,id',
+        FB.api('/me/friends?fields=name,id',
             function (response) {
             console.log(response);
             console.log(response.data);
