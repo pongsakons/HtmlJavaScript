@@ -6,6 +6,25 @@
     <meta name="viewport" content="width=, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script> -->
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" >
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" ></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" ></script>
+
+        <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
 </head>
 
 <body onload="DisableInitial()">
@@ -109,7 +128,7 @@
             'GET',
             { fields: 'first_name,last_name,name,id,picture.width(150).height(150)' },
             function (response) {
-                document.getElementById('Picture').innerHTML = "<img src='" + response.picture.data.url + "' alt=''>";;//response.name; ;
+                document.getElementById('Picture').innerHTML = "<img src='" + response.picture.data.url + "' class='img-rounded' alt=''>";//response.name; ;
             }
         );
     }
@@ -136,20 +155,31 @@
     //         }
     //     );
     function GetFriends() {
-        FB.api('/me/friends?fields=name,id',
+        FB.api(
+            '/me/friends',
+            'GET',
+            {},
             function (response) {
                 console.log(response.data.length);
                 console.log(response);
                 console.log(response.data);
-                if (response && response.data.length) {
-                    var html = '<ul>';
-                    for (var i = 0; i < response.data.length; i++) {
-                        html += '<li><img src="http://graph.facebook.com/' + response.picture.data[i].id + '/picture?type=small" />' + response.data[i].name + '</li>';
-                    }
-                    html += '</ul>';
-                    document.getElementById('friends').innerHTML = html;
-                }
-            });
+                // Insert your code here
+            }
+        );
+        // FB.api('/me/friends?fields=name,id',
+        //     function (response) {
+        //         console.log(response.data.length);
+        //         console.log(response);
+        //         console.log(response.data);
+        //         if (response && response.data.length) {
+        //             var html = '<ul>';
+        //             for (var i = 0; i < response.data.length; i++) {
+        //                 html += '<li><img src="http://graph.facebook.com/' + response.picture.data[i].id + '/picture?type=small" />' + response.data[i].name + '</li>';
+        //             }
+        //             html += '</ul>';
+        //             document.getElementById('friends').innerHTML = html;
+        //         }
+        //     });
     }
 </script>
 
